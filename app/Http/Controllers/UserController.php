@@ -14,14 +14,14 @@ class UserController extends Controller
         //$user = UserModel::all();
         //return view('user', ['data' => $user]);
 
-        $data = [
+        /*$data = [
             'level_id' => 2,
             'username' => 'manager_tiga',
             'nama' => 'Manager 3',
             'password' => Hash::make('12345')
-        ];
+        ];*/
 
-        UserModel::create($data);
+        //UserModel::create($data);
 
         //$user = UserModel::find(1);
         //$user = UserModel::where('level_id',1)->first();
@@ -31,7 +31,17 @@ class UserController extends Controller
         //});
         //$user = UserModel::findOrfail(1);
         //$user = UserModel::where('username', 'manager9')->firstOrFail;
-        $user = UserModel::where('level_id', 2)->count();
+        //$user = UserModel::where('level_id', 2)->count();
+        $user = UserModel::firstOrNew(
+            [
+                'username' => 'manager33',
+                'nama' => 'Manager Tiga Tiga',
+                'password' => Hash::make('12345'),
+                'level_id' => 2
+            
+            ],
+        );
+        $user->save();
         return view('user', ['data' => $user]);
 
         // tambah data user dengan Eloquent Model
