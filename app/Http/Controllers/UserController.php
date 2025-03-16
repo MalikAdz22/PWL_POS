@@ -32,7 +32,8 @@ class UserController extends Controller
         //$user = UserModel::findOrfail(1);
         //$user = UserModel::where('username', 'manager9')->firstOrFail;
         //$user = UserModel::where('level_id', 2)->count();
-        $user = UserModel::firstOrNew(
+
+        /*$user = UserModel::firstOrNew(
             [
                 'username' => 'manager33',
                 'nama' => 'Manager Tiga Tiga',
@@ -42,7 +43,7 @@ class UserController extends Controller
             ],
         );
         $user->save();
-        return view('user', ['data' => $user]);
+        return view('user', ['data' => $user]);*/
 
         // tambah data user dengan Eloquent Model
         //$data = [
@@ -53,5 +54,24 @@ class UserController extends Controller
         // coba akses model UserModel
         //$user = UserModel::all(); // ambil semua data dari tabel m_user
         //return view('user', ['data' => $user]);
+
+       
+        $user = UserModel::create([
+            'username' => 'manager11',
+            'nama' => 'Manager11',
+            'password' => Hash::make('12345'),
+            'level_id' => 2,
+        ]);
+    
+        $user->username = 'manager12';
+    
+        $user->save();
+    
+        $user->wasChanged(); // true
+        $user->wasChanged('username'); // true
+        $user->wasChanged(['username', 'level_id']); // true
+        $user->wasChanged('nama'); // false
+        $user->wasChanged(['nama', 'username']); // true
+        
     }
 }
