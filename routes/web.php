@@ -40,6 +40,7 @@ Route::middleware(['authorize:ADM'])->group(function(){
     Route::get('/user/hapus/{id}', [UserController::class, 'hapus']);
 });
 
+Route::middleware(['authorize:ADM'])->group(function(){
 Route::get('/', [WelcomeController::class, 'index']);
 Route::group(['prefix' => 'user'], function () { // Ditandai
     Route::get('/', [UserController::class, 'index']); // menampilkan halaman awal user
@@ -57,7 +58,9 @@ Route::group(['prefix' => 'user'], function () { // Ditandai
     Route::get('/{id}/delete_ajax', [UserController::class, 'confirm_ajax']);
     Route::delete('/{id}/delete_ajax', [UserController::class, 'delete_ajax']);
 });
+});
 
+Route::middleware(['authorize:ADM'])->group(function(){
 Route::group(['prefix' => 'level'], function () {
     Route::get('/', [LevelController::class, 'index']);
     Route::post('/list', [LevelController::class, 'list']);
@@ -74,7 +77,9 @@ Route::group(['prefix' => 'level'], function () {
     Route::get('/{id}/delete_ajax', [LevelController::class, 'confirm_ajax']);
     Route::delete('/{id}/delete_ajax', [LevelController::class, 'delete_ajax']);
 });
+});
 
+Route::middleware(['authorize:ADM'])->group(function(){
 Route::group(['prefix' => 'kategori'], function () {
     Route::get('/', [KategoriController::class, 'index']);
     Route::post('/list', [KategoriController::class, 'list']);
@@ -91,7 +96,9 @@ Route::group(['prefix' => 'kategori'], function () {
     Route::get('/{id}/delete_ajax', [KategoriController::class, 'confirm_ajax']);
     Route::delete('/{id}/delete_ajax', [KategoriController::class, 'delete_ajax']);
 });
+});
 
+Route::middleware(['authorize:ADM'])->group(function(){
 Route::group(['prefix' => 'supplier'], function () {
     Route::get('/', [SupplierController::class, 'index']);
     Route::post('/list', [SupplierController::class, 'list']);
@@ -108,7 +115,9 @@ Route::group(['prefix' => 'supplier'], function () {
     Route::get('/{id}/delete_ajax', [SupplierController::class, 'confirm_ajax']);
     Route::delete('/{id}/delete_ajax', [SupplierController::class, 'delete_ajax']);
 });
+});
 
+Route::middleware(['authorize:ADM'])->group(function(){
 Route::group(['prefix' => 'barang'], function () {
     Route::get('/', [BarangController::class, 'index']);
     Route::post('/list', [BarangController::class, 'list']);
@@ -124,4 +133,5 @@ Route::group(['prefix' => 'barang'], function () {
     Route::delete('/{id}', [BarangController::class, 'destroy']);
     Route::get('/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']);
     Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax']);
+});
 });
